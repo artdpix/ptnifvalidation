@@ -12,24 +12,24 @@ namespace ValidarNif
         /// <returns></returns>
         public static bool Nif(string nifNumber)
         {
-            int maxNumberSize = 9;
+            int tamanhoNumero = 9; // Tamanho do número NIF
 
-            string filteredNumber = Regex.Match(nifNumber, @"[0-9]+").Value;
+            string filteredNumber = Regex.Match(nifNumber, @"[0-9]+").Value; // extrair Número
 
-            if (filteredNumber.Length != maxNumberSize || int.Parse(filteredNumber[0].ToString()) == 0) { return false; }
+            if (filteredNumber.Length != tamanhoNumero || int.Parse(filteredNumber[0].ToString()) == 0) { return false; } // Verificar Tamanho, e zero no inicio
 
-            int checkSum = 0;
-           
-            for (int i = 0; i < maxNumberSize-1; i++)
+            int calculoCheckSum = 0;
+            // Calcular check sum
+            for (int i = 0; i < tamanhoNumero - 1; i++)
             {
-                checkSum += (int.Parse(filteredNumber[i].ToString()))*(maxNumberSize-i);
+                calculoCheckSum += (int.Parse(filteredNumber[i].ToString()))*(tamanhoNumero - i);
             }
 
-            int checkDigit = 11-(checkSum % 11);
+            int digitoVerificacao = 11-(calculoCheckSum % 11);
            
-            if (checkDigit > 9) { checkDigit = 0; }
-
-            return checkDigit == int.Parse(filteredNumber[maxNumberSize - 1].ToString());
+            if (digitoVerificacao > 9) { digitoVerificacao = 0; }
+            // retornar validação
+            return digitoVerificacao == int.Parse(filteredNumber[tamanhoNumero - 1].ToString());
 
         }
 
