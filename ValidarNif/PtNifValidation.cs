@@ -4,6 +4,12 @@ namespace ValidarNif
 {
     public class PtNifValidation
     {
+        /// <summary>
+        /// Expects a string with a number, and checks if number is a valid PT Nif number
+        /// usage PtNifValidation.Nif(nifNumber)
+        /// </summary>
+        /// <param name="nifNumber"></param>
+        /// <returns></returns>
         public static bool Nif(string nifNumber)
         {
             int maxNumberSize = 9;
