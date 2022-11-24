@@ -6,18 +6,18 @@ namespace ValidarNif
     {
         static void Main(string[] args)
         {
-            bool wait = false;
+            bool wait = true;
             do
             {
                 Console.Write("Nif: ");
 
                 string nif = Console.ReadLine();
 
-                if (nif == "") { wait = true; }
+                if (nif == "") { wait = false; }
 
                 Console.WriteLine(PtNifValidation.Nif(nif));
                 
-            } while (!wait);
+            } while (wait);
 
         }
     }
